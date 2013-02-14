@@ -1,27 +1,23 @@
-require_relative '../../db/config'
 require 'date'
-
+require_relative '../../db/config'
 
 class GoodnessValidator < ActiveModel::Validator
   def validate(record)
     if record.age < 5
       record.errors[:base] << "This person is a toddler!"
-    end
-    	
+    end	
   end
 end
 
-# implement your Student model here
-class Student < ActiveRecord::Base
-	REGEX = /\w*@\w*.[a-zA-Z]{2,5}/
-	# validates_with GoodnessValidator
-	# validates :email, :uniqueness => true
-	# validates :email, :format => { :with => REGEX,
-	# 				    			:message => "Only valid emails allowed" }
-	# validate :phone_number_size
 
-	# attr_accessible :age
-	
+class Person < ActiveRecord::Base
+	REGEX = /\w*@\w*.[a-zA-Z]{2,5}/
+	validates_with GoodnessValidator
+	validates :email, :uniqueness => true
+	validates :email, :format => { :with => REGEX,
+					    			:message => "Only valid emails allowed" }
+	validate :phone_number_size
+
 	belongs_to :teacher
 
 	def phone_number_size
@@ -40,5 +36,3 @@ class Student < ActiveRecord::Base
 		year_now - year_birth -1
 	end
 end
-
-
