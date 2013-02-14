@@ -24,5 +24,8 @@ require_relative 'app/models/teacher.rb'
 
 
 
-puts s = Student.find(360).teacher.inspect
+puts Student.find(360).teacher.last_name == "Heidenreich"
+
+puts Teacher.find(122).students.length > 1
+
 
