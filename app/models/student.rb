@@ -21,8 +21,8 @@ class Student < ActiveRecord::Base
 	# validate :phone_number_size
 
 	# attr_accessible :age
-	
-	belongs_to :teacher
+	has_many :teacher_students
+	has_many :teachers, :through => :teacher_students
 
 	def phone_number_size
 		if self.phone.scan(/\d/).join('').length < 10

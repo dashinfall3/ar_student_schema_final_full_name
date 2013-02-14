@@ -18,8 +18,9 @@ class Teacher < ActiveRecord::Base
 	validates :email, :format => { :with => REGEX,
 					    			:message => "Only valid emails allowed" }
 	validate :phone_number_size
-
-	has_many :students
+	
+	has_many :teacher_students
+	has_many :students, :through => :teacher_students
 
 	def phone_number_size
 		if self.phone.scan(/\d/).join('').length < 10
