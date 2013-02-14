@@ -1,5 +1,6 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'faker'
 require_relative 'db/config'
 require_relative 'lib/students_importer'
 
@@ -23,7 +24,7 @@ task "db:migrate" do
   end
 end
 
-task :seed do
+task "db:seed" do
 	require_relative 'app/models/student.rb'
 	require_relative 'app/models/teacher.rb'
 	require_relative 'app/models/teacher_student.rb'
